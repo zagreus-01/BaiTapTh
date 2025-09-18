@@ -5,10 +5,8 @@ import jakarta.persistence.TypedQuery;
 import java.util.List;
 
 import btth.configs.JPAconfig;
-import btth.dao.model.UserDao;
 import btth.dao.model.VideoDao;
 import btth.dao.serviceabstract.CRUDabstractDao;
-import btth.entity.Users;
 import btth.entity.Video;
 
 public class VideoDaoImpl extends CRUDabstractDao<Video> implements VideoDao {

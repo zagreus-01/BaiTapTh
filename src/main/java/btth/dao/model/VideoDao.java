@@ -3,7 +3,6 @@ package btth.dao.model;
 import java.util.List;
 
 import btth.dao.serviceabstract.GenericDao;
-import btth.entity.Users;
 import btth.entity.Video;
 
 public interface VideoDao extends GenericDao<Video> {
