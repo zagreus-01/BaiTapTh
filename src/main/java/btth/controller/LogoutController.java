@@ -20,6 +20,6 @@ public class LogoutController extends HttpServlet {
         if (session != null) {
             session.invalidate(); // hủy session
         }
-        response.sendRedirect(request.getContextPath() + "/login");
+        response.sendRedirect(request.getContextPath() + "/login"); // chuyển hướng về trang login
     }
 }

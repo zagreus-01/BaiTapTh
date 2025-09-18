@@ -12,7 +12,7 @@ public class UserDaoImpl extends CRUDabstractDao<Users> implements UserDao {
 	public UserDaoImpl() {
 		super(Users.class);
 	}
-
+	@Override
 	public Users findByUsernamePassword(String username, String password) {
 		EntityManager em = JPAconfig.getEntityManager();
 		try {

@@ -9,27 +9,9 @@
 </head>
 <body class="bg-light">
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="${pageContext.request.contextPath}/admin/home">Admin Panel</a>
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="${pageContext.request.contextPath}/admin/home">Category</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="${pageContext.request.contextPath}/admin/user/list">User</a>
-        </li>
-      </ul>
-      <a href="${pageContext.request.contextPath}/logout" class="btn btn-danger">Đăng xuất</a>
-    </div>
-  </div>
-</nav>
-
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2>Danh sách User</h2>
+        <h2 class="fw-bold">Danh sách User</h2>
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">+ Thêm User</button>
     </div>
 
@@ -73,12 +55,12 @@
                 </td>
             </tr>
 
-            <!-- Modal Edit -->
+            <!-- Modal Sửa -->
             <div class="modal fade" id="editUserModal${u.id}" tabindex="-1">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <form action="${pageContext.request.contextPath}/admin/user/edit" method="post">
-                      <div class="modal-header">
+                      <div class="modal-header bg-warning">
                         <h5 class="modal-title">Sửa User</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                       </div>
@@ -135,7 +117,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <form action="${pageContext.request.contextPath}/admin/user/add" method="post">
-          <div class="modal-header">
+          <div class="modal-header bg-primary text-white">
             <h5 class="modal-title">Thêm User</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           </div>

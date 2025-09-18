@@ -1,76 +1,85 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>User Home</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
-    <!-- Header -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="${pageContext.request.contextPath}/user/home">My Website</a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <span class="navbar-text text-white">
-                            Xin chào, <c:out value="${sessionScope.user.username}" />
-                        </span>
-                    </li>
-                    <li class="nav-item ms-3">
-                        <a class="btn btn-sm btn-outline-light" href="${pageContext.request.contextPath}/logout">Đăng xuất</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Nội dung chính -->
-    <div class="container mt-4">
-        <div class="text-center">
-            <h1>Trang chủ User</h1>
-            <p class="lead">Chào mừng bạn đến với hệ thống!</p>
-        </div>
+<div class="container mt-5">
+    <h1 class="mb-4">Trang chủ</h1>
 
-        <div class="row mt-5">
-            <div class="col-md-4">
-                <div class="card shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">Thông tin cá nhân</h5>
-                        <p class="card-text">Xem và chỉnh sửa thông tin cá nhân của bạn.</p>
-                        <a href="#" class="btn btn-primary">Xem chi tiết</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-md-4">
-                <div class="card shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">Thông báo</h5>
-                        <p class="card-text">Xem các thông báo mới nhất từ hệ thống.</p>
-                        <a href="#" class="btn btn-primary">Xem thông báo</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-md-4">
-                <div class="card shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">Hỗ trợ</h5>
-                        <p class="card-text">Cần giúp đỡ? Liên hệ đội ngũ hỗ trợ.</p>
-                        <a href="#" class="btn btn-primary">Liên hệ</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Danh sách Category -->
+    <div class="d-flex justify-content-between align-items-center mt-4 mb-2">
+        <h3 class="m-0">Danh sách Category</h3>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-primary text-white text-center py-3 mt-5">
-        &copy; 2025 My Website. All rights reserved.
-    </footer>
+    <table class="table table-bordered table-hover bg-white shadow-sm">
+        <thead class="table-dark text-center">
+            <tr>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Ảnh</th>
+                <th>Trạng thái</th>
+                <th>Xem chi tiết</th>
+            </tr>
+        </thead>
+        <tbody>
+        <c:forEach var="c" items="${categories}">
+            <tr class="align-middle">
+                <td class="text-center">${c.id}</td>
+                <td>${c.name}</td>
+                <td class="text-center">
+                    <img src="${pageContext.request.contextPath}/image/${c.img}" 
+                         class="img-thumbnail" style="max-height:70px;object-fit:cover">
+                </td>
+                <td class="text-center">
+                    <span class="badge ${c.status ? 'bg-success' : 'bg-secondary'}">
+                        ${c.status ? 'Active' : 'Inactive'}
+                    </span>
+                </td>
+                <td class="text-center">
+                    <button class="btn btn-sm btn-info"
+                            data-bs-toggle="modal" data-bs-target="#viewModal${c.id}">
+                        Xem
+                    </button>
+                </td>
+            </tr>
+
+            <!-- Modal chi tiết -->
+            <div class="modal fade" id="viewModal${c.id}" tabindex="-1">
+              <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title">Chi tiết Category</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p><strong>ID:</strong> ${c.id}</p>
+                    <p><strong>Tên:</strong> ${c.name}</p>
+                    <p><strong>Ảnh:</strong><br>
+                        <img src="${pageContext.request.contextPath}/image/${c.img}" class="img-fluid rounded shadow-sm">
+                    </p>
+                    <p><strong>Trạng thái:</strong> 
+                        <span class="badge ${c.status ? 'bg-success' : 'bg-secondary'}">
+                            ${c.status ? 'Active' : 'Inactive'}
+                        </span>
+                    </p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </c:forEach>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

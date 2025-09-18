@@ -9,28 +9,12 @@
 </head>
 <body class="bg-light">
 
-<!-- Navbar chung -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="${pageContext.request.contextPath}/admin/home">Admin Panel</a>
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link active" href="${pageContext.request.contextPath}/admin/home">Category</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="${pageContext.request.contextPath}/admin/user/list">User</a>
-        </li>
-      </ul>
-      <a href="${pageContext.request.contextPath}/logout" class="btn btn-danger">Đăng xuất</a>
-    </div>
-  </div>
-</nav>
-
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2>Danh sách Category</h2>
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">+ Thêm Category</button>
+        <h2 class="fw-bold">Danh sách Category</h2>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
+            + Thêm Category
+        </button>
     </div>
 
     <table class="table table-bordered table-hover bg-white shadow-sm">
@@ -98,11 +82,11 @@
                       <div class="modal-body">
                           <input type="hidden" name="id" value="${c.id}">
                           <div class="mb-3">
-                              <label>Tên</label>
+                              <label class="form-label">Tên</label>
                               <input type="text" class="form-control" name="name" value="${c.name}" required>
                           </div>
                           <div class="mb-3">
-                              <label>Ảnh</label>
+                              <label class="form-label">Ảnh</label>
                               <input type="file" class="form-control" name="img">
                           </div>
                           <div class="form-check">
@@ -128,17 +112,17 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <form action="${pageContext.request.contextPath}/admin/category/add" method="post" enctype="multipart/form-data">
-          <div class="modal-header">
+          <div class="modal-header bg-primary text-white">
             <h5 class="modal-title">Thêm Category</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           </div>
           <div class="modal-body">
               <div class="mb-3">
-                  <label>Tên</label>
+                  <label class="form-label">Tên</label>
                   <input type="text" class="form-control" name="name" required>
               </div>
               <div class="mb-3">
-                  <label>Ảnh</label>
+                  <label class="form-label">Ảnh</label>
                   <input type="file" class="form-control" name="img">
               </div>
               <div class="form-check">
